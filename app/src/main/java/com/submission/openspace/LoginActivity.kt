@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.submission.openspace.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-
+    //test
     private lateinit var binding: ActivityLoginBinding
     private lateinit var mAuth: FirebaseAuth
     private var database = FirebaseDatabase.getInstance()
