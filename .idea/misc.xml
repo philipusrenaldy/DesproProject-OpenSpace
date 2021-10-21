@@ -10,12 +10,10 @@
         <entry key="..\:/Kuliah/Praktikum/OpenSpace/app/src/main/res/layout/activity_register.xml" value="0.15" />
         <entry key="..\:/Kuliah/Praktikum/OpenSpace/app/src/main/res/layout/activity_splash_screen.xml" value="0.16945288753799392" />
         <entry key="..\:/Kuliah/Praktikum/OpenSpace/app/src/main/res/menu/navigation.xml" value="0.20092592592592592" />
-        <entry key="..\:/OpenSpace/DesproProject/app/src/main/res/drawable-v24/ic_person.xml" value="0.21875" />
-        <entry key="..\:/OpenSpace/DesproProject/app/src/main/res/drawable/custon_progress_bar.xml" value="0.21875" />
-        <entry key="..\:/OpenSpace/DesproProject/app/src/main/res/drawable/round_rect_lightblue.xml" value="0.21875" />
-        <entry key="..\:/OpenSpace/DesproProject/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/OpenSpace/DesproProject/app/src/main/res/layout/home_fragment.xml" value="0.1923837784371909" />
-        <entry key="..\:/OpenSpace/DesproProject/app/src/main/res/menu/navigation.xml" value="0.20260416666666667" />
+        <entry key="..\:/oop/despro/app/src/main/res/layout/activity_login.xml" value="0.1328125" />
+        <entry key="..\:/oop/despro/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/oop/despro/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/oop/despro/app/src/main/res/layout/activity_splash_screen.xml" value="0.1328125" />
       </map>
     </option>
   </component>

@@ -12,6 +12,8 @@
     <color name="blue_700">#FF1976D2</color>
     <color name="blue_gray_200">#FFB0BEC5</color>
     <color name="blue_gray_700">#FF455A64</color>
+    <color name="Primary">#3d4697</color>
+    <color name="Secondary">#ffe6eb</color>
     <color name="gray">#444444</color>
     <color name="transparent">#00000000</color>
 </resources>
