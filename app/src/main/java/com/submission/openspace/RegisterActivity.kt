@@ -22,11 +22,11 @@ class RegisterActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        binding.btnSignUp.setOnClickListener{
+        binding.btnSignUp.setOnClickListener {
             val email = binding.etEmailRegister.text.toString().trim()
             val password = binding.etPasswordRegister.text.toString().trim()
 
-            when{
+            when {
                 email.isEmpty() -> {
                     binding.etEmailRegister.error = "This field is required"
                     binding.etEmailRegister.requestFocus()
@@ -47,13 +47,20 @@ class RegisterActivity : AppCompatActivity() {
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
                                 val currentUser = mAuth.currentUser
-                                myRef.child("Users").child(currentUser!!.uid).child("nama").setValue("Nama Anda")
-                                    .addOnSuccessListener {
-                                        Toast.makeText(this, "Register Successfully!", Toast.LENGTH_SHORT).show()
-                                    }
-                            }
-                            else {
-                                Toast.makeText(applicationContext, "Register Failed!", Toast.LENGTH_SHORT).show()
+                                myRef.child("Users").child(currentUser!!.uid).child("nama")
+                                    .setValue("Nama Anda")
+                                Toast.makeText(
+                                    this,
+                                    "Register Successfully!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                startActivity(Intent(this, LoginActivity::class.java))
+                            } else {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Register Failed!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                 }

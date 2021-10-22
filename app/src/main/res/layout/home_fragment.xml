@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent"
+    android:animateLayoutChanges="true"
     app:layout_constraintStart_toStartOf="parent"
-    android:animateLayoutChanges="true">
+    app:layout_constraintTop_toTopOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,112 +14,142 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/yuhu"
+            android:id="@+id/firstLayer"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             android:background="@color/quantum_grey300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_person"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.088"
+                app:tint="@color/white" />
+
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text=" "
+                android:text="Name"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                tools:ignore="HardcodedText" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="15dp"
                 android:background="@color/white"
                 android:elevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/gambar_lokasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="15dp"
                     android:weightSum="10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
+                        android:id="@+id/imageView2"
                         android:layout_width="0dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
-                        android:layout_weight="7"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="6"
+                        android:contentDescription="Location"
                         android:src="@drawable/ic_baseline_location_on_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/blue_700" />
+                        app:tint="@color/black" />
 
                     <TextView
                         android:id="@+id/tv_lokasi"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="32dp"
-                        android:layout_weight="3"
-                        android:text=" "
-                        android:textColor="@color/blue_700"
-                        android:textSize="16sp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Parung Panjang"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/gambar_zona"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:weightSum="10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/gambar_lokasi">
 
                     <ImageView
+                        android:id="@+id/imageView3"
                         android:layout_width="0dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
-                        android:layout_weight="7"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="6"
+                        android:contentDescription="Information"
                         android:src="@drawable/ic_zona"
-                        app:tint="@color/blue_700" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
 
                     <TextView
-                        android:layout_width="190dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="32dp"
-                        android:layout_weight="3"
+                        android:fontFamily="@font/poppins_light"
                         android:text="Anda berada dalam zona merah"
-                        android:textColor="@color/blue_700"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/tvv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Reputasi Anda"
-                    android:textColor="@color/blue_700"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +162,9 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@color/blue_gray_200"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvv">
@@ -159,132 +190,88 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins_light"
                         android:text="Mengagumkan"
-                        android:textColor="@color/blue_700"
-                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progressbar" />
-
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_person"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.088"
-                app:tint="@color/white" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/btn_realtime"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
             android:background="@color/quantum_grey300"
+            android:orientation="horizontal"
+            android:weightSum="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/yuhu"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:padding="8dp"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            app:layout_constraintTop_toBottomOf="@id/firstLayer">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:text="Realtime Warning"
-                android:textColor="@color/blue_700"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:layout_gravity="center"
                 android:layout_marginStart="12dp"
-                android:gravity="center"/>
+                android:layout_weight="7"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Realtime Warning"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:layout_gravity="center"
-                android:checked="true"/>
+                android:layout_weight="2"
+                android:checked="true" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="COVID-19 Info Center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bukan"
-            android:layout_marginStart="32dp"/>
-
-        <TextView
-            android:id="@+id/tanggal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="Informasi per 23/9/2020"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintHorizontal_bias="0.0"/>
 
         <LinearLayout
             android:id="@+id/bukan"
             android:layout_width="match_parent"
             android:layout_height="84dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_realtime"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp">
+            app:layout_constraintTop_toBottomOf="@id/btn_realtime">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/quantum_grey300"
+                android:weightSum="10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:weightSum="10">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
                     android:id="@+id/tulisan"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="BANTU KAMI MENEKAN PENULARAN COVID-19"
-                    android:textColor="@color/blue_700"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:layout_marginStart="12dp"
                     android:layout_weight="7"
-                    android:layout_gravity="center"/>
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="BANTU KAMI MENEKAN PENULARAN COVID-19"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnLapor"
@@ -296,6 +283,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/round_rect_lightblue"
                     android:elevation="25dp"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="laporkan"
                     android:textColor="@color/black"
                     android:textSize="12sp"
@@ -306,185 +294,201 @@
             </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="COVID-19 Indonesia Info Center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bukan" />
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Update on :"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/tanggal_real"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="23/9/2020"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/tanggal"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_totalkasus"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintTop_toBottomOf="@id/tanggal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/quantum_grey300"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="8dp" >
+            android:background="@color/quantum_grey300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tanggal">
 
             <ImageView
                 android:id="@+id/gambar_batuk"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="@color/blue_gray_700"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:tint="@color/white" />
-
-            <ImageView
                 android:layout_width="95dp"
                 android:layout_height="95dp"
+                android:background="@color/Primary"
                 android:rotationY="180"
                 android:src="@drawable/ic_cough"
-                app:layout_constraintEnd_toEndOf="@+id/gambar_batuk"
-                app:layout_constraintTop_toTopOf="@id/gambar_batuk"
-                app:layout_constraintStart_toStartOf="@id/gambar_batuk"
-                app:layout_constraintBottom_toBottomOf="@id/gambar_batuk"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/total_kasus"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Total Kasus"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginStart="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/gambar_batuk"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/jumlah_konfirmasi"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtInfected"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="-----"
-                android:textColor="@color/blue_700"
-                android:textSize="34sp"
-                android:textStyle="bold"
                 android:layout_marginStart="12dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="-----"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/gambar_batuk"
-                app:layout_constraintTop_toBottomOf="@id/total_kasus"/>
+                app:layout_constraintTop_toBottomOf="@id/total_kasus" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_totalkematian"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintTop_toBottomOf="@id/layout_totalkasus"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/quantum_grey300"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="24dp" >
+            android:background="@color/quantum_grey300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_totalkasus">
 
             <ImageView
                 android:id="@+id/gambar_ambulan"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:background="@color/Primary"
                 android:src="@drawable/ic_ambulance"
-                app:layout_constraintEnd_toEndOf="@+id/gambar_ambulan"
-                app:layout_constraintTop_toTopOf="@id/gambar_ambulan"
-                app:layout_constraintStart_toStartOf="@id/gambar_ambulan"
-                app:layout_constraintBottom_toBottomOf="@id/gambar_ambulan"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/total_kematian"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Total Kematian"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginStart="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/gambar_ambulan"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/jumlah_kematian"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtDeceased"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="-----"
-                android:textColor="@color/blue_700"
-                android:textSize="34sp"
-                android:textStyle="bold"
                 android:layout_marginStart="12dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="-----"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/gambar_ambulan"
-                app:layout_constraintTop_toBottomOf="@id/total_kematian"/>
+                app:layout_constraintTop_toBottomOf="@id/total_kematian" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:layout_constraintTop_toBottomOf="@id/layout_totalkematian"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/quantum_grey300"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="24dp">
+            android:background="@color/quantum_grey300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_totalkematian">
 
             <ImageView
                 android:id="@+id/gambar_sembuh"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="@color/blue_gray_200"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:background="@color/Primary"
                 android:src="@drawable/ic_user"
-                app:layout_constraintEnd_toEndOf="@+id/gambar_sembuh"
-                app:layout_constraintTop_toTopOf="@id/gambar_sembuh"
-                app:layout_constraintStart_toStartOf="@id/gambar_sembuh"
-                app:layout_constraintBottom_toBottomOf="@id/gambar_sembuh"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/total_sembuh"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Total Sembuh"
-                android:textColor="@color/blue_700"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginStart="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/gambar_sembuh"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/jumlah_sembuh"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtRecoverd"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/poppins_light"
                 android:text="-----"
-                android:textColor="@color/blue_700"
-                android:textSize="34sp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/gambar_sembuh"
-                app:layout_constraintTop_toBottomOf="@id/total_sembuh"
-                android:layout_marginStart="12dp"/>
+                app:layout_constraintTop_toBottomOf="@id/total_sembuh" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </ScrollView>

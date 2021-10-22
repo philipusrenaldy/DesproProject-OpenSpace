@@ -6,57 +6,56 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.submission.openspace.databinding.ActivityMainBinding
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var tb: Toolbar
     private var activeFragment: Int? = null
     private var nextFragment: Int? = null
 
-    @Suppress("DEPRECATION")
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener{ item ->
-
-        if(item.itemId == R.id.navigation_map && activeFragment != 2){
-
-            return@OnNavigationItemSelectedListener true
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            if (item.itemId == R.id.navigation_map && activeFragment != 2) {
+                return@OnNavigationItemSelectedListener true
+            } else if (item.itemId == R.id.navigation_home && activeFragment != 1) {
+                tb.title = "PROFILE"
+                val homeFragment = HomeFragment.newInstance()
+                nextFragment = 1
+                openFragment(homeFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            false
         }
-
-        else if(item.itemId == R.id.navigation_home && activeFragment != 1){
-            tb.title = "PROFILE"
-            val homeFragment = HomeFragment.newInstance()
-            nextFragment = 1
-            openFragment(homeFragment)
-            return@OnNavigationItemSelectedListener true
-        }
-        false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         tb = findViewById(R.id.toolbarr)
         setSupportActionBar(tb)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
 
-        if(savedInstanceState == null){
-            toHome()
+        with(bottomNavigation) {
+            if (savedInstanceState == null) {
+                toHome()
+            }
+            tb.title = ""
+            tb.setTitleTextColor(resources.getColor(R.color.transparent))
+            // ini inisialisasi bottomNavBar nya
+            setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         }
-
-        tb.title = ""
-        tb.setTitleTextColor(resources.getColor(R.color.transparent))
-
-        // ini inisialisasi bottomNavBar nya
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
-    private fun openFragment(fragment: Fragment){
+    private fun openFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        if(activeFragment!! > nextFragment!!){
+        if (activeFragment!! > nextFragment!!) {
             transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
-        }
-        else if(activeFragment!! < nextFragment!!){
+        } else if (activeFragment!! < nextFragment!!) {
             transaction.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left)
         }
         activeFragment = nextFragment
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun toHome(){
+    private fun toHome() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.selectedItemId = R.id.navigation_home
         activeFragment = 1

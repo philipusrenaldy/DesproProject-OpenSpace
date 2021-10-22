@@ -19,6 +19,7 @@
         android:theme="@style/Theme.OpenSpace">
         <activity
             android:name=".SplashScreenActivity"
+            android:theme="@style/Theme.OpenSpace.NoActionBar"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
