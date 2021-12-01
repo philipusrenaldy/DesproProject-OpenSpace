@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomsheet"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="32dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <ImageView
+        android:id="@+id/logomenu"
+        android:layout_width="150dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_baseline_drag_handle_24"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:id="@+id/buttonnya"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logomenu">
+
+        <RadioButton
+            android:id="@+id/rb_pemerintah"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/secondary_background"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/ic_baseline_map_24"
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="Peta Risiko"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:ignore="UnusedAttribute" />
+
+        <RadioButton
+            android:id="@+id/rb_realtime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/secondary_background"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_crowd"
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="Crowd Heatmap"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:ignore="UnusedAttribute" />
+
+        <RadioButton
+            android:id="@+id/rb_prediksi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/secondary_background"
+            android:button="@color/transparent"
+            android:drawableTop="@drawable/ic_analytics"
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="Prediksi"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:ignore="UnusedAttribute" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pilihwaktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="Pilih Waktu Prediksi"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonnya" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pilihwaktu">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Hari"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_hari"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_rect_putih"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:text="03 - 10 - 2020"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Jam"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_jam"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_rect_putih"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:text="15:00"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             if (item.itemId == R.id.navigation_map && activeFragment != 2) {
+                tb.title = "MAP"
+                val mapFrag = MapFragment.newInstance()
+                nextFragment = 2
+                openFragment(mapFrag)
                 return@OnNavigationItemSelectedListener true
             } else if (item.itemId == R.id.navigation_home && activeFragment != 1) {
                 tb.title = "PROFILE"
@@ -46,7 +50,6 @@ class MainActivity : AppCompatActivity() {
             }
             tb.title = ""
             tb.setTitleTextColor(resources.getColor(R.color.transparent))
-            // ini inisialisasi bottomNavBar nya
             setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         }
     }
@@ -62,6 +65,16 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun onBackPressed() {
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
+        val selectedItemId = bottomNavigation.selectedItemId
+
+        if (selectedItemId != R.id.navigation_home){
+            toHome()
+            super.onBackPressed()
+        }
     }
 
     private fun toHome() {
