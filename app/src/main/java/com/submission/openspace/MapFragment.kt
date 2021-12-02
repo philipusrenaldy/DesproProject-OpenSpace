@@ -83,12 +83,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     ): View? {
         setHasOptionsMenu(true)
         rootView = inflater.inflate(R.layout.fragment_map, container, false)
-//        inisialisasiLokasi()
-//        createLocationRequest()
-//        inisialisasiBS()
-//        inisialisasiAutoComplete()
-//        initializeRb()
-//        inisialisasiDatePicker()
+        inisialisasiLokasi()
+        createLocationRequest()
+        inisialisasiBS()
+        inisialisasiAutoComplete()
+        initializeRb()
+        inisialisasiDatePicker()
 
         risikoRevisi = rootView.findViewById(R.id.risiko_revisi)
         return rootView
@@ -298,7 +298,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         }
         return data
     }
-    val google_maps_key = AIzaSyBMR9HBBsfWu7BfR6EXMENvOjPYybM_k88
+//    val google_maps_key = AIzaSyBMR9HBBsfWu7BfR6EXMENvOjPYybM_k88
     private fun inisialisasiAutoComplete() {
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.google_maps_key))
@@ -376,6 +376,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
             null /* Looper */
         )
     }
+
 
     private fun inisialisasiLokasi() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -496,27 +497,27 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         return false
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == REQUEST_CHECK_SETTINGS) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                locationUpdateState = true
-//                startLocationUpdates()
-//            }
-//        }
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        fusedLocationClient.removeLocationUpdates(locationCallback)
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        if (!locationUpdateState) {
-//            startLocationUpdates()
-//        }
-//    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            if (resultCode == Activity.RESULT_OK) {
+                locationUpdateState = true
+                startLocationUpdates()
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!locationUpdateState) {
+            startLocationUpdates()
+        }
+    }
 
     companion object {
         private const val ARG_POSITION: String = "position"
