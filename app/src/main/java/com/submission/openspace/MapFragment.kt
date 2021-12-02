@@ -298,26 +298,26 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         }
         return data
     }
-
+    val google_maps_key = AIzaSyBMR9HBBsfWu7BfR6EXMENvOjPYybM_k88
     private fun inisialisasiAutoComplete() {
-//        if (!Places.isInitialized()) {
-//            Places.initialize(requireContext(), getString(R.string.google_maps_key))
-//        }
-//
-//        val autocompleteFragment =
-//            childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment
-//
-//        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
-//
-//        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-//            override fun onPlaceSelected(place: Place) {
-//                Log.i("TEMPAT", "Place: ${place.name}, ${place.id}")
-//            }
-//
-//            override fun onError(status: Status) {
-//                Log.i("TEMPAT", "An error occurred: $status")
-//            }
-//        })
+        if (!Places.isInitialized()) {
+            Places.initialize(requireContext(), getString(R.string.google_maps_key))
+        }
+
+        val autocompleteFragment =
+            childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment
+
+        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                Log.i("TEMPAT", "Place: ${place.name}, ${place.id}")
+            }
+
+            override fun onError(status: Status) {
+                Log.i("TEMPAT", "An error occurred: $status")
+            }
+        })
     }
 
     private fun inisialisasiBS() {
