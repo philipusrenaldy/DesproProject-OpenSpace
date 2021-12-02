@@ -1,4 +1,6 @@
 dependencyResolutionManagement {
+//    include ':app'
+    include ':lib_interpreter'
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
