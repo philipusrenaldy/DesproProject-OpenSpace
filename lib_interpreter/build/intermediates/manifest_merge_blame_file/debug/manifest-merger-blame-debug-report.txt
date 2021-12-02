@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->/Users/oliverb/Documents/personal/dptk/FINALDPTK2/DesproProject/lib_interpreter/src/main/AndroidManifest.xml
+6-->D:\Kuliah\Praktikum\OpenSpace\lib_interpreter\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="28" />
-7-->/Users/oliverb/Documents/personal/dptk/FINALDPTK2/DesproProject/lib_interpreter/src/main/AndroidManifest.xml
+7-->D:\Kuliah\Praktikum\OpenSpace\lib_interpreter\src\main\AndroidManifest.xml
 8
 9</manifest>

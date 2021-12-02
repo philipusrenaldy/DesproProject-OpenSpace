@@ -45,7 +45,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
-class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap
     private lateinit var rootView: View
@@ -70,7 +70,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     private var circleBogor: Circle? = null
     private var circleCilegon: Circle? = null
     private var circleTangsel: Circle? = null
-    private var circleTangerang:Circle? = null
+    private var circleTangerang: Circle? = null
 
     private var heatmapOverlay: TileOverlay? = null
     private var stateMap: Int = 1
@@ -88,7 +88,11 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     private val dataLaporan: ArrayList<WeightedLatLng> = arrayListOf()
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         rootView = inflater.inflate(R.layout.fragment_map, container, false)
         setHasOptionsMenu(true)
 
@@ -104,11 +108,11 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         return rootView
     }
 
-    companion object{
+    companion object {
         private const val ARG_POSITION: String = "position"
         const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val REQUEST_CHECK_SETTINGS = 2
-        fun newInstance(): MapFragment{
+        fun newInstance(): MapFragment {
             val fragment = MapFragment()
             val args = Bundle()
             args.putInt(ARG_POSITION, 1)
@@ -127,9 +131,8 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         map.uiSettings.isMyLocationButtonEnabled = false
         map.setOnMarkerClickListener(this)
 
-        setUpMap()
-
         map.isMyLocationEnabled = true
+        setUpMap()
 
         fusedLocationClient.lastLocation.addOnSuccessListener(activity as AppCompatActivity) { location ->
             if (location != null) {
@@ -145,10 +148,16 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     override fun onMarkerClick(p0: Marker?) = false
 
     private fun setUpMap() {
-        if (ActivityCompat.checkSelfPermission(rootView.context,
-                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity as AppCompatActivity,
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        if (ActivityCompat.checkSelfPermission(
+                rootView.context,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity as AppCompatActivity,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
             return
         }
         map.isMyLocationEnabled = true
@@ -164,14 +173,23 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     }
 
     private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(rootView.context,
-                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity as AppCompatActivity,
+        if (ActivityCompat.checkSelfPermission(
+                rootView.context,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity as AppCompatActivity,
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE)
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
             return
         }
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            null /* Looper */
+        )
     }
 
     private fun createLocationRequest() {
@@ -183,27 +201,21 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         val builder = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
 
-        // 4
         val client = LocationServices.getSettingsClient(activity as Activity)
         val task = client.checkLocationSettings(builder.build())
 
-        // 5
         task.addOnSuccessListener {
             locationUpdateState = true
             startLocationUpdates()
         }
         task.addOnFailureListener { e ->
-            // 6
             if (e is ResolvableApiException) {
-                // Location settings are not satisfied, but this can be fixed
-                // by showing the user a dialog.
                 try {
-                    // Show the dialog by calling startResolutionForResult(),
-                    // and check the result in onActivityResult().
-                    e.startResolutionForResult(activity,
-                        REQUEST_CHECK_SETTINGS)
+                    e.startResolutionForResult(
+                        activity,
+                        REQUEST_CHECK_SETTINGS
+                    )
                 } catch (sendEx: IntentSender.SendIntentException) {
-                    // Ignore the error.
                 }
             }
         }
@@ -231,7 +243,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
     }
 
-    private fun initializeRb(){
+    private fun initializeRb() {
         rbPemerintah = rootView.findViewById(R.id.rb_pemerintah)
         rbRealtime = rootView.findViewById(R.id.rb_realtime)
         rbPrediksi = rootView.findViewById(R.id.rb_prediksi)
@@ -241,10 +253,9 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             rbRealtime!!.isChecked = false
             rbPrediksi!!.isChecked = false
 
-            if(stateMap != 1){
+            if (stateMap != 1) {
                 heatmapOverlay!!.remove()
                 modePemerintah()
-//                risikoRevisi!!.visibility = View.VISIBLE
                 risikoRevisi!!.animate().alpha(1.0f)
                 stateMap = 1
             }
@@ -255,7 +266,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             rbRealtime!!.isChecked = true
             rbPrediksi!!.isChecked = false
 
-            if(stateMap != 2){
+            if (stateMap != 2) {
 //                risikoRevisi!!.startAnimation(R.animator.slide_in_left, R.animator.slide_out_right)
 //                risikoRevisi!!.visibility = View.GONE
                 risikoRevisi!!.animate().alpha(0.0f)
@@ -270,7 +281,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
                 circleCirebon!!.remove()
                 circleBekasi!!.remove()
                 circleDepok!!.remove()
-                if(heatmapOverlay != null){
+                if (heatmapOverlay != null) {
                     heatmapOverlay!!.remove()
                 }
                 modeHeatmap()
@@ -283,9 +294,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             rbRealtime!!.isChecked = false
             rbPrediksi!!.isChecked = true
 
-
-
-            if(stateMap != 3){
+            if (stateMap != 3) {
                 risikoRevisi!!.animate().alpha(0.0f)
                 val gbkLatLng = LatLng(-6.218335, 106.802216)
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(gbkLatLng, 15f))
@@ -301,7 +310,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
                 circleCirebon!!.remove()
                 circleBekasi!!.remove()
                 circleDepok!!.remove()
-                if(heatmapOverlay != null){
+                if (heatmapOverlay != null) {
                     heatmapOverlay!!.remove()
                 }
                 val dummy = "1-11"
@@ -311,41 +320,35 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
     }
 
-    private fun modePemerintah(){
+    private fun modePemerintah() {
         buatCircle()
     }
 
-    private fun modeHeatmap(){
+    private fun modeHeatmap() {
         val data = generateHeatMapData()
         generateHeatMapDataLaporan(dataLaporan)
-
         val mergedData = data + dataLaporan
-
         val heatMapProvider = HeatmapTileProvider.Builder()
             .weightedData(mergedData) // load our weighted data
             .radius(35) // optional, in pixels, can be anything between 20 and 50
             .maxIntensity(1000.0) // set the maximum intensity
             .build()
-
         heatmapOverlay = map.addTileOverlay(TileOverlayOptions().tileProvider(heatMapProvider))
     }
 
-    private fun modePrediksi(tangall: String){
+    private fun modePrediksi(tangall: String) {
         val data = generatePrediksiData(tangall)
-
         val heatMapProvider = HeatmapTileProvider.Builder()
             .weightedData(data) // load our weighted data
             .radius(50) // optional, in pixels, can be anything between 20 and 50
             .maxIntensity(1000.0) // set the maximum intensity
             .build()
-
         heatmapOverlay = map.addTileOverlay(TileOverlayOptions().tileProvider(heatMapProvider))
     }
 
-    private fun buatCircle(){
+    private fun buatCircle() {
         val datanya = generateCircleData()
-
-        for (i in 0 until datanya.size){
+        for (i in 0 until datanya.size) {
             val namaTempat = datanya[i].getString("namaTempat")
             val lat = datanya[i].getDouble("latitude")
             val lon = datanya[i].getDouble("longitude")
@@ -357,7 +360,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
                 .fillColor(Color.argb(128, 255, 0, 0))
                 .strokeWidth(0.0F)
 
-            when (namaTempat){
+            when (namaTempat) {
                 "jakarta utara" -> circleJakut = map.addCircle(circleOptions)
                 "jakarta selatan" -> circleJaksel = map.addCircle(circleOptions)
                 "jakarta barat" -> circleJakbar = map.addCircle(circleOptions)
@@ -373,23 +376,18 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
     }
 
-    // return data dari json dataset
-
-    private fun generateCircleData(): ArrayList<JSONObject>{
+    private fun generateCircleData(): ArrayList<JSONObject> {
         val data = ArrayList<JSONObject>()
-
         val jsonData = getJsonDataFromAsset("datasetPetaSebaran.json")
         jsonData?.let {
             for (i in 0 until it.length()) {
                 val entry = it.getJSONObject(i)
-
                 data.add(entry)
             }
         }
         return data
     }
 
-    //return data dari json dataset
     private fun generateHeatMapData(): ArrayList<WeightedLatLng> {
         val data = ArrayList<WeightedLatLng>()
 
@@ -410,36 +408,30 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         return data
     }
 
-    private fun generateHeatMapDataLaporan(list: ArrayList<WeightedLatLng>){
-
-        // Read from the database
+    private fun generateHeatMapDataLaporan(list: ArrayList<WeightedLatLng>) {
         myRef.child("koleksiLaporan")
             .addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Failed to read value
                     Log.w("TAG", "Failed to read value.", error.toException())
                 }
+
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     list.clear()
-
                     for (laporan in dataSnapshot.children) {
-                        val lati:Double = laporan.child("latitude").value.toString().toDouble()
-                        val loni:Double = laporan.child("longitude").value.toString().toDouble()
-                        val deni:Double = laporan.child("density").value.toString().toDouble()
-
+                        val lati: Double = laporan.child("latitude").value.toString().toDouble()
+                        val loni: Double = laporan.child("longitude").value.toString().toDouble()
+                        val deni: Double = laporan.child("density").value.toString().toDouble()
                         val weightedLatLng = WeightedLatLng(LatLng(lati, loni), deni)
                         list.add(weightedLatLng)
                     }
                 }
-
             })
         Log.d("BOS", list.size.toString())
     }
 
     private fun generatePrediksiData(tanggal: String): ArrayList<WeightedLatLng> {
         val data = ArrayList<WeightedLatLng>()
-
         val jsonData = getJsonDataFromAsset("datasetPrediksi.json")
         jsonData?.let {
             for (i in 0 until it.length()) {
@@ -447,11 +439,11 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
                 val entry = it.getJSONObject(i)
                 val tanggalJson: String = entry.getString("tanggal")
 
-                if(tanggal == tanggalJson){
+                if (tanggal == tanggalJson) {
                     val lat = entry.getDouble("latitude")
                     val lon = entry.getDouble("longitude")
                     val density = entry.getDouble("density")
-                    val densityBener:Double = (49.8594 * density) + 1747.6
+                    val densityBener: Double = (49.8594 * density) + 1747.6
 
                     if (density != 0.0) {
                         val weightedLatLng = WeightedLatLng(LatLng(lat, lon), densityBener)
@@ -463,7 +455,6 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         return data
     }
 
-    //ini fungsi buat load .json dari folder asset
     private fun getJsonDataFromAsset(fileName: String): JSONArray? {
         return try {
             val jsonString =
@@ -475,12 +466,11 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
     }
 
-    //inisialisasi lokasi dari pengguna
-    private fun inisialisasiLokasi(){
+    private fun inisialisasiLokasi() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
+        fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 super.onLocationResult(p0)
@@ -490,25 +480,14 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
     }
 
-    private fun inisialisasiBS(){
+    private fun inisialisasiBS() {
         bottomSheetBehavior = BottomSheetBehavior.from(rootView.bottomSheet)
-
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
-
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                // handle onSlide
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                when (newState) {
-////                    BottomSheetBehavior.STATE_COLLAPSED -> Toast.makeText(activity, "STATE_COLLAPSED", Toast.LENGTH_SHORT).show()
-////                    BottomSheetBehavior.STATE_EXPANDED -> Toast.makeText(activity, "STATE_EXPANDED", Toast.LENGTH_SHORT).show()
-////                    BottomSheetBehavior.STATE_DRAGGING -> Toast.makeText(activity, "STATE_DRAGGING", Toast.LENGTH_SHORT).show()
-////                    BottomSheetBehavior.STATE_SETTLING -> Toast.makeText(activity, "STATE_SETTLING", Toast.LENGTH_SHORT).show()
-////                    BottomSheetBehavior.STATE_HIDDEN -> Toast.makeText(activity, "STATE_HIDDEN", Toast.LENGTH_SHORT).show()
-////                    else -> Toast.makeText(activity, "OTHER_STATE", Toast.LENGTH_SHORT).show()
-//                }
             }
         })
     }
@@ -517,14 +496,9 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.google_maps_key))
         }
-
-
-
-
-        val autocompleteFragment = childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment
-
+        val autocompleteFragment =
+            childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment
         autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
-
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 // TODO: Get info about the selected place.
@@ -538,9 +512,9 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     }
 
     @SuppressLint("SetTextI18n")
-    private fun inisialisasiDatePicker(){
-        val tvDate:TextView = rootView.findViewById(R.id.tv_hari)
-        val tvJam:TextView = rootView.findViewById(R.id.tv_jam)
+    private fun inisialisasiDatePicker() {
+        val tvDate: TextView = rootView.findViewById(R.id.tv_hari)
+        val tvJam: TextView = rootView.findViewById(R.id.tv_jam)
 
         val c = Calendar.getInstance()
         val yearr = c.get(Calendar.YEAR)
@@ -560,7 +534,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
                 tangalSekarang = dayOfMonth.toString()
                 tvDate.text = "$tangalSekarang - $bulan - $year"
 
-                if(stateMap == 3){
+                if (stateMap == 3) {
                     heatmapOverlay!!.remove()
                     Log.d("testTanggal", "x$tangalSekarang-$bulan")
                     val format = "$tangalSekarang-$bulan"
@@ -578,12 +552,4 @@ class MapFragment: Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             tpd.show()
         }
     }
-
-//    private fun getHeatMapRadius(latCor:Double): Double{
-//        val distanceInMeter = 3
-//        val meterPerPixel = 156543.03392 * cos(latCor * Math.PI / 180) / 2.0.pow(12.0)
-//
-//        return distanceInMeter / meterPerPixel
-//    }
-
 }
