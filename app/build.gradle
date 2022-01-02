@@ -40,6 +40,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        mlModelBinding true
     }
 }
 
@@ -54,6 +55,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.5.0'
     implementation project(path: ':lib_interpreter')
     implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
