@@ -39,9 +39,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        tb = findViewById(R.id.toolbarr)
-        setSupportActionBar(tb)
-
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
 
         with(bottomNavigation) {
