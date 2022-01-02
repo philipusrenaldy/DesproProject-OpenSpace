@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         val selectedItemId = bottomNavigation.selectedItemId
 
-        if (selectedItemId != R.id.navigation_home){
+        if (selectedItemId != R.id.navigation_home) {
             toHome()
             super.onBackPressed()
         }
