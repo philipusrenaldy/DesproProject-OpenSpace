@@ -2,7 +2,6 @@ package com.submission.openspace
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,20 +11,17 @@ import com.submission.openspace.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var tb: Toolbar
     private var activeFragment: Int? = null
     private var nextFragment: Int? = null
 
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             if (item.itemId == R.id.navigation_map && activeFragment != 2) {
-                tb.title = "MAP"
                 val mapFrag = MapFragment.newInstance()
                 nextFragment = 2
                 openFragment(mapFrag)
                 return@OnNavigationItemSelectedListener true
             } else if (item.itemId == R.id.navigation_home && activeFragment != 1) {
-                tb.title = "PROFILE"
                 val homeFragment = HomeFragment.newInstance()
                 nextFragment = 1
                 openFragment(homeFragment)
@@ -45,8 +41,6 @@ class MainActivity : AppCompatActivity() {
             if (savedInstanceState == null) {
                 toHome()
             }
-            tb.title = ""
-            tb.setTitleTextColor(resources.getColor(R.color.transparent))
             setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         }
     }
@@ -79,8 +73,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.selectedItemId = R.id.navigation_home
         activeFragment = 1
         nextFragment = 1
-        tb.title = "PROFILE"
-        tb.setTitleTextColor(resources.getColor(R.color.white))
         openFragment(HomeFragment.newInstance())
     }
 }

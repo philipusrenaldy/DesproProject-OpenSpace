@@ -17,6 +17,7 @@
 package com.submission.openspace;
 
 import java.util.Random;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -230,7 +231,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                                 final RectF location = result.getLocation();
                                 if (location != null && result.getConfidence() >= minimumConfidence) {
                                     canvas.drawRect(location, paint);
-
                                     cropToFrameTransform.mapRect(location);
 
                                     result.setLocation(location);
@@ -269,14 +269,11 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
     }
-
 
     @SuppressLint("MissingPermission")
     public void btnPrediksi(View view) {
@@ -298,17 +295,16 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
 //                for (int i = 0; i <= jumlahOrang; i++) {
-                    Calendar c = Calendar.getInstance();
-                    String kodeLaporan = c.getTime().toString();
-                    mDatabase.child("koleksiLaporan").child(kodeLaporan).child("latitude").setValue(lat);
-                    mDatabase.child("koleksiLaporan").child(kodeLaporan).child("longitude").setValue(lon);
-                    mDatabase.child("koleksiLaporan").child(kodeLaporan).child("density").setValue(den);
-                    Log.d("Lokasi", "AMAN");
+                Calendar c = Calendar.getInstance();
+                String kodeLaporan = c.getTime().toString();
+                mDatabase.child("koleksiLaporan").child(kodeLaporan).child("latitude").setValue(lat);
+                mDatabase.child("koleksiLaporan").child(kodeLaporan).child("longitude").setValue(lon);
+                mDatabase.child("koleksiLaporan").child(kodeLaporan).child("density").setValue(den);
+                Log.d("Lokasi", "AMAN");
 //                }
                 finish();
             }
@@ -324,8 +320,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
         alertDialog.show();
     }
 
-    // Which detection model to use: by default uses Tensorflow Object Detection API frozen
-    // checkpoints.
     private enum DetectorMode {
         TF_OD_API;
     }

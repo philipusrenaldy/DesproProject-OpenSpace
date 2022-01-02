@@ -66,20 +66,7 @@ class HomeFragment : Fragment() {
         inisialisasiButtonLapor()
         inisialisasiProfile()
         inisialisasiLokasi()
-        inisialisasiTanggal()
         return rootView
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun inisialisasiTanggal() {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR).toString()
-        val month = c.get(Calendar.MONTH).toString()
-        val day = c.get(Calendar.DATE).toString()
-        val dateInString = "$day/$month/$year"
-
-        val tanggal: TextView = rootView.findViewById(R.id.tanggal)
-        tanggal.text = "Informasi per $dateInString"
     }
 
     private fun inisialisasiLokasi() {
@@ -197,12 +184,11 @@ class HomeFragment : Fragment() {
                 val jsonObject = JSONObject(it.toString())
 
                 val time = jsonObject.getLong("updated")
-                val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
-                val res = Date(time)
-                formatter.format(res)
-                println("Current Date and Time is: $res")
+                val formatter = SimpleDateFormat("EEE, yyyy/MM/dd hh:mm:ss aaa")
+                var result = formatter.format(time)
+                println("Current Date and Time is: $result")
 
-                tanggal_real.text = res.toString()
+                tanggal_real.text = result
                 txtInfected.text = jsonObject.getString("cases")
                 txtRecoverd.text = jsonObject.getString("recovered")
                 txtDeceased.text = jsonObject.getString("deaths")
@@ -227,7 +213,6 @@ class HomeFragment : Fragment() {
         var TAG = HomeFragment::class.java.simpleName
         private const val ARG_POSITION: String = "position"
 
-        //        const val REQUEST_VIDEO_CAPTURE = 1
         fun newInstance(): HomeFragment {
             val fragment = HomeFragment()
             val args = Bundle()

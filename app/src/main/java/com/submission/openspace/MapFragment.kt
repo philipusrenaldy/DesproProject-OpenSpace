@@ -496,19 +496,19 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), getString(R.string.google_maps_key))
         }
-        val autocompleteFragment =
-            childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment
-        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
-        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-            override fun onPlaceSelected(place: Place) {
-                // TODO: Get info about the selected place.
-                Log.i("TEMPAT", "Place: ${place.name}, ${place.id}")
-            }
-
-            override fun onError(status: Status) {
-                Log.i("TEMPAT", "An error occurred: $status")
-            }
-        })
+//        val autocompleteFragment =
+//            childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment
+//        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+//        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+//            override fun onPlaceSelected(place: Place) {
+//                // TODO: Get info about the selected place.
+//                Log.i("TEMPAT", "Place: ${place.name}, ${place.id}")
+//            }
+//
+//            override fun onError(status: Status) {
+//                Log.i("TEMPAT", "An error occurred: $status")
+//            }
+//        })
     }
 
     @SuppressLint("SetTextI18n")
@@ -518,21 +518,22 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
         val c = Calendar.getInstance()
         val yearr = c.get(Calendar.YEAR)
-        bulan = c.get(Calendar.MONTH).toString()
+        val bulan = c.get(Calendar.MONTH)
+        var bulan1 = bulan + 1
         tangalSekarang = c.get(Calendar.DATE).toString()
 
         val jam = c.get(Calendar.HOUR_OF_DAY)
         val menit = c.get(Calendar.MINUTE)
 
         tvJam.text = "$jam:$menit"
-        tvDate.text = "$tangalSekarang - $bulan - $yearr"
+        tvDate.text = "$tangalSekarang - $bulan1 - $yearr"
 
         tvDate.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { _, year, monthOfYear, dayOfMonth ->
                 // set tv nya ke yang dipilih
-                bulan = (monthOfYear + 1).toString()
+                var bulan3 = monthOfYear + 1
                 tangalSekarang = dayOfMonth.toString()
-                tvDate.text = "$tangalSekarang - $bulan - $year"
+                tvDate.text = "$tangalSekarang - $bulan3 - $year"
 
                 if (stateMap == 3) {
                     heatmapOverlay!!.remove()
